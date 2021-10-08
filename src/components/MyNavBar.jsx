@@ -1,4 +1,10 @@
-const SideNav = () => {
+import GoodMorning from "./Home";
+import Liked from "./Liked";
+import { withRouter } from "react-router";
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import Home from "./Home"
+
+const MyNavBar = () => {
   return (
     <div className="container-fluid p-0 main-body">
       <div className="row main">
@@ -28,9 +34,9 @@ const SideNav = () => {
                   className="mr-3"
                   alt
                 />
-                <a id="liked-home" href="home.html" className="d-inline-block">
+                <Link to={"/home"} id="liked-home" className="d-inline-block">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="list-group-item pt-2 p-0 xxx">
                 <img
@@ -78,7 +84,7 @@ const SideNav = () => {
                   className="mr-3"
                   alt
                 />
-                <h6 className="d-inline-block">Liked Songs</h6>
+                <Link to={"liked"} className="d-inline-block">Liked Songs</Link>
               </li>
             </ul>
           </div>
@@ -225,6 +231,8 @@ const SideNav = () => {
 
 
 {/* // Place for the dynamic components */}
+<Route path={'/home'} exact component={Home}/>
+<Route path={'/liked'} exact component={Liked}/>
             
         
         </div>
@@ -233,4 +241,4 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export default withRouter(MyNavBar)

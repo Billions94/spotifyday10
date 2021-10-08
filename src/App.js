@@ -1,12 +1,17 @@
 import './App.css';
 import Footer from './components/Footer';
-import SideNav from './components/SideNav';
+import MyNavBar from './components/MyNavBar';
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+import Home from './components/Home';
+import Liked from './components/Liked';
 
 function App() {
   return (
     <div className="App">
-      <SideNav />
+      <Router>
+      <MyNavBar />
       <Footer />
+      </Router>
     </div>
   );
 }

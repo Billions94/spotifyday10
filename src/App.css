@@ -359,6 +359,15 @@ thead {
   margin-top: 20px;
 }
 
+.wizzy {
+  width: 60px;
+  /* height: 20px; */
+}
+
+.love {
+  width: 17px;
+}
+
 #test {
   word-wrap: break-word;
 }

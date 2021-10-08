@@ -5,7 +5,7 @@ const Footer = () => {
         
         <div id="song-nav" className="col-12 col-xl-4 title-img">
           <div className="cover-logo">
-            <div className="disk" />
+                <img className="wizzy" src="./images/Wizkid.jpeg" alt="" />
             <div>
               <a className="Song-name" id="a1" href>
                 Blessed (feat. Damian Marley)
@@ -16,7 +16,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="bi-bi-heart">
-              <i className="bi bi-heart" />
+            <img className="love" src="./images/love.png" alt="" />
             </div>
             <div className="bi-bi-aspect">
               <i className="bi bi-aspect-ratio" />
