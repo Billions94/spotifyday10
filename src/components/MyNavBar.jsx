@@ -1,10 +1,12 @@
 import GoodMorning from "./Home";
 import Liked from "./Liked";
+import { useState, useEffect } from "react";
 import { withRouter } from "react-router";
-import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
-import Home from "./Home"
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import Home from "./Home";
 
 const MyNavBar = () => {
+  const [search, setSearch] = useState('')
   return (
     <div className="container-fluid p-0 main-body">
       <div className="row main">
@@ -47,6 +49,12 @@ const MyNavBar = () => {
                 />
                 <h6 className="d-inline-block">Search</h6>
               </li>
+              <input
+                type="search"
+                placeholder="Search songs"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
               <li className="list-group-item pt-2 p-0">
                 <img
                   src="./images/icons8-music-library-50.png"
@@ -84,7 +92,9 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <Link to={"liked"} className="d-inline-block">Liked Songs</Link>
+                <Link to={"liked"} id="liked-home" className="d-inline-block">
+                  Liked Songs
+                </Link>
               </li>
             </ul>
           </div>
@@ -229,16 +239,13 @@ const MyNavBar = () => {
             </ul>
           </div>
 
-
-{/* // Place for the dynamic components */}
-<Route path={'/home'} exact component={Home}/>
-<Route path={'/liked'} exact component={Liked}/>
-            
-        
+          {/* // Place for the dynamic components */}
+          <Route path={"/home"} exact render={() => <Home search={search} />} />
+          <Route path={"/liked"} exact component={Liked} />
         </div>
       </div>
     </div>
   );
 };
 
-export default withRouter(MyNavBar)
+export default withRouter(MyNavBar);
