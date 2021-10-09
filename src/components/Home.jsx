@@ -8,11 +8,7 @@ const Home = ({ search }) => {
     search.length > 3
       ? `https://striveschool-api.herokuapp.com/api/deezer/search?q=${search}`
       : `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`;
-  // if (search.length > 3) {
-  //   let endpoint = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${search}`;
-  // }else{
-  //   const baseUrl = `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`;
-  // }
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +24,7 @@ const Home = ({ search }) => {
       <h4 className="mt-3 mb-3 ml-1 text-left">Recently played</h4>
       <div id="recently" className="justify-content-between">
         {data.map((songs) => (
-          <div className="good-morning-card ml-3 mt-4 mb-3 active ">
+          <div className="good-morning-card ml-2 mt-4 mb-3 active ">
             <div className="row no-gutters">
               <div className="col-3">
                 <img
@@ -37,7 +33,7 @@ const Home = ({ search }) => {
                   width={80}
                 />
               </div>
-              <div className="col-5 ml-5">
+              <div className="col-5 ml-2">
                 <div className="card-body">
                   <h6 className="card-title text-white">
                     {songs.album.title}
