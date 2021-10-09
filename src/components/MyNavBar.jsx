@@ -1,9 +1,11 @@
 import GoodMorning from "./Home";
 import Liked from "./Liked";
+import {DropdownButton, Dropdown} from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Home from "./Home";
+import Search from "./Search";
 
 const MyNavBar = () => {
   const [search, setSearch] = useState('')
@@ -47,7 +49,7 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <h6 className="d-inline-block">Search</h6>
+                <Link to={"/search"} id="liked-home" className="d-inline-block">Search</Link>
               </li>
               <input
                 type="search"
@@ -242,6 +244,7 @@ const MyNavBar = () => {
           {/* // Place for the dynamic components */}
           <Route path={"/home"} exact render={() => <Home search={search} />} />
           <Route path={"/liked"} exact component={Liked} />
+          <Route path={"/search"} exact component={Search} />
         </div>
       </div>
     </div>

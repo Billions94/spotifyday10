@@ -1,11 +1,12 @@
+import Form from 'react-bootstrap/Form'
+
 const Footer = () => {
   return (
     <div className="row footer">
       <nav className="col-12 navbar fixed-bottom now-playing">
-        
         <div id="song-nav" className="col-12 col-xl-4 title-img">
           <div className="cover-logo">
-                <img className="wizzy" src="./images/Wizkid.jpeg" alt="" />
+            <img className="wizzy" src="./images/Wizkid.jpeg" alt="" />
             <div>
               <a className="Song-name" id="a1" href>
                 Blessed (feat. Damian Marley)
@@ -16,7 +17,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="bi-bi-heart">
-            <img className="love" src="./images/love.png" alt="" />
+              <img className="love" src="./images/love.png" alt="" />
             </div>
             <div className="bi-bi-aspect">
               <i className="bi bi-aspect-ratio" />
@@ -268,7 +269,6 @@ const Footer = () => {
             </svg>
           </div>
           <div className="expand">
-            <hr className="volume-hr" />
             <img
               id="expand"
               src="./images/icons8-enlarge-50.png"
@@ -276,6 +276,11 @@ const Footer = () => {
               alt=""
             />
           </div>
+            <Form>
+              <Form.Group controlId="formBasicRange">
+                <Form.Control className="volumebar" type="range" />
+              </Form.Group>
+            </Form>
         </div>
       </nav>
     </div>

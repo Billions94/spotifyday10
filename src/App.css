@@ -12,6 +12,7 @@ body {
 
 .btn-black {
   margin-top: -8px;
+  height: 30px;
 }
 
 .menu {
@@ -84,24 +85,24 @@ body {
   position: absolute;
   padding: 0px;
   margin: 0px;
-  top: 13px;
-  right: 178px;
+  top: 20px;
+  right: 135px;
 }
 
 #vol-btn-2 {
   position: absolute;
   padding: 0px;
   margin: 0px;
-  top: 13px;
-  right: 210px;
+  top: 20px;
+  right: 160px;
 }
 
 #vol-btn-3 {
   position: absolute;
   padding: 0px;
   margin: 0px;
-  top: 13px;
-  right: 150px;
+  top: 20px;
+  right: 105px;
 }
 
 .duration-hr {
@@ -126,6 +127,7 @@ body {
   top: -2px;
   right: 43px;
 }
+
 
 
 ul.music-group-list {
@@ -436,6 +438,36 @@ h5.card-title {
 
 }
 
+#recently {
+  display: flex;
+  flex-direction:  row;
+  flex-wrap: wrap;
+}
+
+#shows {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+#shows::-webkit-scrollbar {
+  display: none;
+}
+
+#downloaded {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+#downloaded::-webkit-scrollbar {
+  display: none;
+}
+
+#favorite {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+#favorite::-webkit-scrollbar {
+  display: none;
+}
+
 .card-1 {
   position: relative;
   display: flex;
@@ -460,11 +492,7 @@ h5.card-title {
   padding-bottom: 5px;
 }
 
-#recently {
-  display: flex;
-  flex-direction:  row;
-  flex-wrap: wrap;
-}
+
 
 .Recently-card h5 {
   font-size: smaller;
@@ -891,6 +919,19 @@ a #alex:hover {
   font-size: 14px;
 }
 
+.volumebar {
+  margin-top: 6px;
+  height: 4.3px;
+  width: 110px;
+  margin-left: 289px;
+  background: rgb(11, 185, 11);
+  border-radius: 19px;
+  outline: none; 
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+ 
+}
+
 .App {
   text-align: center;
 }
@@ -905,6 +946,7 @@ a #alex:hover {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;
