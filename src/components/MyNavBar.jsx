@@ -1,14 +1,12 @@
-import GoodMorning from "./Home";
 import Liked from "./Liked";
-import {DropdownButton, Dropdown} from "react-bootstrap"
-import { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Home from "./Home";
 import Search from "./Search";
+import Library from "./Library";
 
 const MyNavBar = () => {
-  const [search, setSearch] = useState('')
+
   return (
     <div className="container-fluid p-0 main-body">
       <div className="row main">
@@ -51,12 +49,7 @@ const MyNavBar = () => {
                 />
                 <Link to={"/search"} id="liked-home" className="d-inline-block">Search</Link>
               </li>
-              <input
-                type="search"
-                placeholder="Search songs"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
+
               <li className="list-group-item pt-2 p-0">
                 <img
                   src="./images/icons8-music-library-50.png"
@@ -64,9 +57,9 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <a id="liked-home" href="album.html" className="d-inline-block">
+                <Link to={"/library"} id="liked-home" href="" className="d-inline-block">
                   Your Library
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -81,7 +74,7 @@ const MyNavBar = () => {
                 />
                 <a
                   id="liked-home"
-                  href="playlist.html"
+                  href=""
                   className="d-inline-block"
                 >
                   Playlist
@@ -165,7 +158,7 @@ const MyNavBar = () => {
                   href="https://www.spotify.com/us/download/other/"
                   target="_blank"
                 >
-                  <button className="btn-instal-app" type="button" href>
+                  <button className="btn-instal-app" type="button">
                     <img
                       id="install-app-icon"
                       src="./images/icons8-scroll-down-50.png"
@@ -185,66 +178,16 @@ const MyNavBar = () => {
               songs
               good-morning-section
               col-12 col-sm-8 col-md-9 col-lg-10
-              p-0
               m-0
             "
         >
-          <div id="songs-nav" className="pt-3 pb-3 sticky-to m-0">
-            <ul className="nav m-0">
-              <li className="nav-item active">
-                <button
-                  id="btn-in-nav-1"
-                  type="button"
-                  className="active btn btn-success"
-                >
-                  &lt;
-                </button>
-              </li>
-              <li className="nav-item ml-3">
-                <button
-                  id="btn-in-nav-1"
-                  type="button"
-                  className="btn btn-success"
-                >
-                  &gt;
-                </button>
-              </li>
-              <button
-                className="
-                    btn btn-black
-                    text-green
-                    dropdown-toggle
-                    username-home
-                    btn-border
-                    p-0
-                  "
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <img src="./images/adult-1.png" width="25px" alt />
-                Alexander
-              </button>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <a className="dropdown-item" href="#">
-                  Setting
-                </a>
-                <a className="dropdown-item" href="#">
-                  Log Out
-                </a>
-              </div>
-            </ul>
-          </div>
+
 
           {/* // Place for the dynamic components */}
-          <Route path={"/home"} exact render={() => <Home search={search} />} />
+          <Route path={"/home"} exact component={Home}/>
           <Route path={"/liked"} exact component={Liked} />
-          <Route path={"/search"} exact component={Search} />
+          <Route path={"/search"} exact component={Search}/>
+          <Route path={"/library"} exact component={Library} />
         </div>
       </div>
     </div>

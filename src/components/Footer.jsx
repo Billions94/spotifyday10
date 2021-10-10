@@ -8,11 +8,11 @@ const Footer = () => {
           <div className="cover-logo">
             <img className="wizzy" src="./images/Wizkid.jpeg" alt="" />
             <div>
-              <a className="Song-name" id="a1" href>
+              <a className="Song-name" id="a1" href="">
                 Blessed (feat. Damian Marley)
               </a>
               <br />
-              <a className="artist-name" id="a2" href>
+              <a className="artist-name" id="a2" href="">
                 WizKid, Damian Markey
               </a>
             </div>

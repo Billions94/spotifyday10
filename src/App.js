@@ -1,9 +1,8 @@
 import './App.css';
 import Footer from './components/Footer';
 import MyNavBar from './components/MyNavBar';
-import { BrowserRouter as Router, Route} from 'react-router-dom'
-import Home from './components/Home';
-import Liked from './components/Liked';
+import { BrowserRouter as Router} from 'react-router-dom'
+
 
 function App() {
   return (
