@@ -268,14 +268,14 @@ const Footer = () => {
               </g>
             </svg>
           </div>
-          <div className="expand">
+          {/* <div className="expand">
             <img
               id="expand"
               src="./images/icons8-enlarge-50.png"
               width={18}
               alt=""
             />
-          </div>
+          </div> */}
             <Form>
               <Form.Group controlId="formBasicRange">
                 <Form.Control className="volumebar" type="range" />
