@@ -44,7 +44,7 @@ const store = createStore(
   mainCompose(applyMiddleware(thunk))
 );
 
+export default store
 export const persistor = persistStore(store);
 
-export default store
 

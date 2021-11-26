@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
 const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong }) => {
 
     const [selected, setSelected] = useState(false)
+    const [isShown, setIsShown] = useState(false)
 
     const like = (songs) => {
         setSelected(true)
@@ -43,10 +44,15 @@ const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong }) 
         }else(setSelected(false))
     },[])
 
+    
+
     return(
-        <div key={songs.id} className="row liked-hov table-body mt-3">
+        <div onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}  key={songs.id} className="row liked-hov table-body mt-3">
         <div className="d-flex hash">
-          <h6 className="text-light">{i}</h6>
+            {isShown === false ? 
+            <h6  className="text-light">{i}</h6>    
+            : <img onClick={() => displayInPlayer(songs)}  src={'./images/playbtn.png'} width='20px' height='20px'/>
+            } 
         </div>
         <div className="d-flex cover title">
           <div className="cover-son">
