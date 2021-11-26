@@ -61,7 +61,7 @@ const Playlist = ({ location }) => {
 
       <div id="liked-songs" className="d-flex">
           <div className="d-flex liked-songs-container">
-            <img src={"./images/Wizkid.jpeg"} width="192px" alt />
+            <img src={"https://toppng.com/uploads/preview/music-note-free-png-image-outline-of-music-notes-11562913469vlfuqfrli6.png"} width="192px" alt='' />
             <div className="expert">
               <h2 id="playlisth2" className="text-light">
                 PLAYLIST
@@ -75,6 +75,20 @@ const Playlist = ({ location }) => {
         </div>
 
         <Modal show={show}  handleClose={handleClose}/>
+
+        <div>
+            <Dropdown className='threeDots  ml-4'>
+                <Dropdown.Toggle className='customDropdown p-0' variant="success" id="dropdown-basic">
+                  <b>...</b>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className='customDropdownMenu '>
+                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-1">Add to playlist</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem customBorder' href="#/action-2">Another action</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-3">Something else</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+        </div>
     
     </div>)
   );

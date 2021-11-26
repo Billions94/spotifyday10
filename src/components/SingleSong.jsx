@@ -1,20 +1,48 @@
 import Dropdown from "react-bootstrap/Dropdown"
 import { connect } from "react-redux"
-import { likedSongsAction } from "../redux/actions/actions"
+import { useState, useEffect } from "react"
+import { likedSongsAction, unlikedSongsAction, displayInPlayerAction } from "../redux/actions/actions"
 
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+    likes: state.likes.liked,
+    playerSong: state.playerSong
+})
 
 const mapDispatchToProps = (dispatch) => ({
     likeSong: (songs) => {
         dispatch(likedSongsAction(songs))
     },
-    unLikeSong: (songs) => {
-        dispatch(likedSongsAction(songs))
+    displayInPlayer: (songs) => {
+        dispatch(displayInPlayerAction(songs))
+    },
+    unLikeSong: (songsIndex) => {
+        dispatch(unlikedSongsAction(songsIndex))
     }
 })
 
-const SingleSong = ({ songs, i, likeSong }) => {
+
+
+const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong }) => {
+
+    const [selected, setSelected] = useState(false)
+
+    const like = (songs) => {
+        setSelected(true)
+        likeSong(songs)
+    }
+
+    const unLike = (songsIndex) => {
+        setSelected(false)
+        unLikeSong(songsIndex)
+    }
+
+    useEffect(() => {
+        if(likes.map(l => l.id).indexOf(songs.id) !== -1){
+            setSelected(true)
+        }else(setSelected(false))
+    },[])
+
     return(
         <div key={songs.id} className="row liked-hov table-body mt-3">
         <div className="d-flex hash">
@@ -22,7 +50,7 @@ const SingleSong = ({ songs, i, likeSong }) => {
         </div>
         <div className="d-flex cover title">
           <div className="cover-son">
-            <img src={songs.album.cover_medium} width={45} />
+            <img onClick={() => displayInPlayer(songs)} src={songs.album.cover_medium} width={45} />
           </div>
           <div className="co">
             <a id="a1" >
@@ -39,8 +67,11 @@ const SingleSong = ({ songs, i, likeSong }) => {
         </div>
         <div className="d-flex date-added ">
           <span className="text-muted ml-4">1 year ago</span>
-          <img className='ml-3' onClick={() => likeSong(songs)} src="https://img.icons8.com/ios/50/000000/like--v1.png" width='25px'/>
-          <img className='ml-3' onClick src="https://img.icons8.com/fluency/50/000000/like.png" width='25px'/>
+          
+          { selected === false ?
+                <img className='ml-3' onClick={() => like(songs)} src="https://img.icons8.com/ios/50/000000/like--v1.png" width='22px'/>
+               : <img className='ml-3' onClick={() => unLike(i)} src="https://img.icons8.com/fluency/50/000000/like.png" width='22px'/>
+          }
         </div>
         <div className="d-flex customDropdownDiv">
             <div className="d-flex duration">

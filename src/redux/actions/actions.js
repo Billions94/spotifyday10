@@ -3,13 +3,25 @@ export const GET_ARTIST = 'GET_ARTIST'
 export const GET_ALBUMS = 'GET_ALBUMS'
 export const ADD_TO_PLAYLIST = 'ADD_TO_PLAYLIST'
 export const LIKE_SONGS = 'LIKE_SONGS'
+export const UNLIKED_SONGS = 'UNLIKED_SONGS'
 export const SET_SELECTED_ALBUM = 'SET_SELECTED_ALBUM'
 export const GET_TRACKLIST = 'GET_TRACKLIST'
+export const PUT_IN_PLAYER = 'PUT_IN_PLAYER'
 
 export const likedSongsAction = (songs) => ({
     type: LIKE_SONGS,
     payload: songs
 
+})
+
+export const unlikedSongsAction = (songsIndex) => ({
+    type: UNLIKED_SONGS,
+    payload: songsIndex
+})
+
+export const displayInPlayerAction = (songs) => ({
+    type: PUT_IN_PLAYER,
+    payload: songs
 })
 
 export const getSongsAction = () => {
