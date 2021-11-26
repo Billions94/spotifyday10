@@ -6,10 +6,16 @@ export const LIKE_SONGS = 'LIKE_SONGS'
 export const SET_SELECTED_ALBUM = 'SET_SELECTED_ALBUM'
 export const GET_TRACKLIST = 'GET_TRACKLIST'
 
+export const likedSongsAction = (songs) => ({
+    type: LIKE_SONGS,
+    payload: songs
+
+})
+
 export const getSongsAction = () => {
     return async (dispatch) => {
         try {
-            const response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`)
+            const response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=wizkid`)
             if(response.ok) {
                 const data = await response.json()
                 const newData = data.data

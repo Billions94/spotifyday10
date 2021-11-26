@@ -5,8 +5,9 @@ import Home from "./Home";
 import Search from "./Search";
 import Library from "./Library";
 import Album from "./Album";
+import Playlist from "./Playlist";
 
-const MyNavBar = () => {
+const MyNavBar = ({ artist, setArtist}) => {
 
   return (
     <div className="container-fluid p-0 main-body">
@@ -80,8 +81,14 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <a id="liked-home" href="" className="d-inline-block">
+                <a
+                  id="liked-home"
+                  href=""
+                  className="d-inline-block"
+                >
+                  <Link to={"/playlist"} id="liked-home">
                   Playlist
+                  </Link>
                 </a>
               </li>
               <li className="list-group-item pt-2 p-0">
@@ -193,6 +200,7 @@ const MyNavBar = () => {
           <Route
             path={"/album/:albumId"} exact component={Album}
           />
+          <Route path={"/playlist"} exact component={Playlist} />
         </div>
       </div>
     </div>

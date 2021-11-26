@@ -145,6 +145,7 @@ const Home = ({ songs, getSongs, selectedAlbum }) => {
                   ▶️
                 </button>
               </div>
+
             </div>
           ))}
       </div>
@@ -189,6 +190,7 @@ const Home = ({ songs, getSongs, selectedAlbum }) => {
                   ▶️
                 </button>
               </div>
+
             </div>
           ))}
       </div>

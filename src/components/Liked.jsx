@@ -2,18 +2,27 @@ import { withRouter } from "react-router";
 import { useState, useEffect } from "react";
 import { fetchSongs } from "../lib";
 import { Dropdown } from "react-bootstrap";
+import { connect } from "react-redux"
+import { getSongsAction } from "../redux/actions/actions";
+import SingleSong from "./SingleSong";
 
-const Liked = ({ location }) => {
-  const [data, setData] = useState([]);
-  const url = `https://striveschool-api.herokuapp.com/api/deezer/search?q=wizkid`;
+const mapStateToProps = state => ({
+  songs: state.data.songs
+})
+
+const mapDispatchToProps = dispatch => ({
+  getSongs: () => {
+        dispatch(getSongsAction())
+  }
+ })
+
+const Liked = ({ location, songs, getSongs }) => {
+  console.log('i am the song in the liked section', songs)
+  // const [data, setData] = useState([]);
+  // const url = `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const dataEndpoint = await fetchSongs(url);
-      setData(dataEndpoint.data);
-      console.log(dataEndpoint.data);
-    };
-    fetchData();
+    getSongs();
   }, []);
 
   return (
@@ -55,7 +64,7 @@ const Liked = ({ location }) => {
                   <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Upgrade to Premium</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Private session</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Log out</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
         </ul>
@@ -76,6 +85,7 @@ const Liked = ({ location }) => {
             </div>
           </div>
         </div>
+
         <div className="button-flw sticky-top">
           {/*-----------button with js---------*/}
           <button
@@ -119,50 +129,8 @@ const Liked = ({ location }) => {
             </div>
             {/*-------------------------------------------table 1-------------------------------------------*/}
               <>
-              {data.map((songs) => (
-            <div key={songs.id} className="row liked-hov table-body mt-3">
-                  <div className="d-flex hash">
-                    <h6 className="text-light">{songs.length}</h6>
-                  </div>
-                  <div className="d-flex cover title">
-                    <div className="cover-son">
-                      <img src={songs.album.cover_medium} width={45} />
-                    </div>
-                    <div className="co">
-                      <a id="a1" >
-                        {songs.title}
-                      </a>
-                      <br />
-                      <a id="a2" href="">
-                        {songs.artist.name}
-                      </a>
-                    </div>
-                  </div>
-                  <div className="d-flex album">
-                    <a className="text-muted album ml-3">{songs.album.title}</a>
-                  </div>
-                  <div className="d-flex date-added ">
-                    <span className="text-muted ml-4">1 year ago</span>
-                  </div>
-                  <div className="d-flex customDropdownDiv">
-                      <div className="d-flex duration">
-                            <span className="text-muted ml-3">
-                              {("0" + Math.floor(songs.duration / 60)).slice(-2)}:{("0" + songs.duration % 60).slice(-2)}
-                            </span>
-                          </div>
-                        <Dropdown className='threeDots  ml-4'>
-                          <Dropdown.Toggle className='customDropdown p-0' variant="success" id="dropdown-basic">
-                            <b>...</b>
-                          </Dropdown.Toggle>
-
-                          <Dropdown.Menu className='customDropdownMenu '>
-                            <Dropdown.Item className='customDropdownMenuItem' href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item className='customDropdownMenuItem customBorder' href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item className='customDropdownMenuItem' href="#/action-3">Something else</Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-            </div>
+              {songs && songs.map((songs, i) => (
+                <SingleSong songs={songs} i={i}/>
               ))}
                 </>
 
@@ -173,4 +141,4 @@ const Liked = ({ location }) => {
   );
 };
 
-export default withRouter(Liked);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Liked));
