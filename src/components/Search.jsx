@@ -4,7 +4,7 @@ import { fetchSongs } from "../lib";
 import { connect } from "react-redux"
 
 const mapStateToProps = state => ({
-  
+
 })
 
 const Search = ({ location }) => {
@@ -14,7 +14,7 @@ const Search = ({ location }) => {
     const mystate =
       search.length > 3
         ? `https://striveschool-api.herokuapp.com/api/deezer/search?q=${search}`
-        : `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`;
+        : null// : `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`;
   
     useEffect(() => {
       const fetchData = async () => {

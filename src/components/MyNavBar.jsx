@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Home from "./Home";
 import Search from "./Search";
 import Library from "./Library";
+import Playlist from "./Playlist";
 
-const MyNavBar = () => {
+const MyNavBar = ({ artist, setArtist}) => {
 
   return (
     <div className="container-fluid p-0 main-body">
@@ -77,7 +78,9 @@ const MyNavBar = () => {
                   href=""
                   className="d-inline-block"
                 >
+                  <Link to={"/playlist"} id="liked-home">
                   Playlist
+                  </Link>
                 </a>
               </li>
               <li className="list-group-item pt-2 p-0">
@@ -188,6 +191,7 @@ const MyNavBar = () => {
           <Route path={"/liked"} exact component={Liked} />
           <Route path={"/search"} exact component={Search}/>
           <Route path={"/library"} exact component={Library} />
+          <Route path={"/playlist"} exact component={Playlist} />
         </div>
       </div>
     </div>
