@@ -11,6 +11,7 @@ export const initialState = {
         songs: [],
         albums: [],
         artist: [],
+        trackList: {},
     },
     liked: [],
 }

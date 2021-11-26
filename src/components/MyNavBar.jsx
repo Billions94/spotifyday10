@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Home from "./Home";
 import Search from "./Search";
 import Library from "./Library";
+import Album from "./Album";
 
 const MyNavBar = () => {
 
@@ -47,7 +48,9 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <Link to={"/search"} id="liked-home" className="d-inline-block">Search</Link>
+                <Link to={"/search"} id="liked-home" className="d-inline-block">
+                  Search
+                </Link>
               </li>
 
               <li className="list-group-item pt-2 p-0">
@@ -57,7 +60,12 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <Link to={"/library"} id="liked-home" href="" className="d-inline-block">
+                <Link
+                  to={"/library"}
+                  id="liked-home"
+                  href=""
+                  className="d-inline-block"
+                >
                   Your Library
                 </Link>
               </li>
@@ -72,11 +80,7 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <a
-                  id="liked-home"
-                  href=""
-                  className="d-inline-block"
-                >
+                <a id="liked-home" href="" className="d-inline-block">
                   Playlist
                 </a>
               </li>
@@ -181,13 +185,14 @@ const MyNavBar = () => {
               m-0
             "
         >
-
-
           {/* // Place for the dynamic components */}
-          <Route path={"/home"} exact component={Home}/>
+          <Route path={"/home"} exact component={Home} />
           <Route path={"/liked"} exact component={Liked} />
-          <Route path={"/search"} exact component={Search}/>
+          <Route path={"/search"} exact component={Search} />
           <Route path={"/library"} exact component={Library} />
+          <Route
+            path={"/album/:albumId"} exact component={Album}
+          />
         </div>
       </div>
     </div>
