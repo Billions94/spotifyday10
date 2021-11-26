@@ -1,5 +1,5 @@
 import Liked from "./Liked";
-import { withRouter } from "react-router";
+import  {withRouter}  from 'react-router'
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Home from "./Home";
 import Search from "./Search";
