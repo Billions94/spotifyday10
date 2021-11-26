@@ -8,9 +8,12 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import songsReducer from "./redux/reducers/songs";
+import playerReducer from "./redux/reducers/player";
+import likedReducer from "./redux/reducers/liked";
 import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
+
 
 const mainCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -34,6 +37,8 @@ const persistConfig = {
 
 const allReducers = combineReducers({
   data: songsReducer,
+  likes: likedReducer,
+  playerSong: playerReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, allReducers);

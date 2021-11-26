@@ -13,14 +13,14 @@ const Footer = ({ nowPlaying }) => {
           {
             nowPlaying ? 
             <div className="cover-logo">
-            <img className="wizzy" src={nowPlaying?.album?.cover_small} alt="" />
+            <img className="wizzy" src={nowPlaying?.album?.cover_medium} alt="" />
             <div>
               <a className="Song-name" id="a1" href="">
                 {nowPlaying?.title}
               </a>
               <br />
               <a className="artist-name" id="a2" href="">
-              {nowPlaying?.artist.name}
+              {nowPlaying?.artist?.name}
               </a>
             </div>
             <div className="bi-bi-heart">
