@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk"
+import likedReducer from "../reducers/liked";
 import songsReducer from "../reducers/songs";
 
 
@@ -11,12 +12,16 @@ export const initialState = {
         songs: [],
         albums: [],
         artist: [],
+        isLoading: true
     },
-    liked: [],
+    likes: {
+        liked: []
+    }
 }
 
 const allReducers = combineReducers({
     data : songsReducer,
+    likes: likedReducer
 })
 
 const store = createStore(allReducers, initialState, mainCompose(applyMiddleware(thunk)))

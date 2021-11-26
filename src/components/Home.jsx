@@ -86,8 +86,8 @@ const Home = ({ songs, getSongs }) => {
 
       <h4 className="mt-3 mb-3 ml-1 text-left">Recently played</h4>
       <div id="recently" className="justify-content-between">
-        {songs && songs.map((songs) => (
-          <div className="good-morning-card ml-2 mt-4 mb-3 ">
+        {songs && songs.map((songs, i) => (
+          <div key={i} className="good-morning-card ml-2 mt-4 mb-3 ">
             <div className="row no-gutters">
               <div className="col-3">
                 <img
@@ -115,8 +115,8 @@ const Home = ({ songs, getSongs }) => {
       </div>
       <h4 className="mt-3 mb-3 ml-1 text-left">Shows to try</h4>
       <div id="shows" className="d-flex justify-content-between">
-        {songs && songs.map((songs) => (
-          <div className="Recently-card col-2 mb-3 ml-3 p-2 ">
+        {songs && songs.map((songs, i) => (
+          <div key={i} className="Recently-card col-2 mb-3 ml-3 p-2 ">
             <img src={songs.album.cover_medium} className="card-img-top" />
             <div className="card-body mt-2">
               <h6 className="card-title text-white">{songs.album.title}</h6>
@@ -134,8 +134,8 @@ const Home = ({ songs, getSongs }) => {
       </div>
       <h4 className="mt-3 mb-3 ml-1 text-left">Recently Downloaded</h4>
       <div id="downloaded" className="d-flex justify-content-between">
-        {songs && songs.map((songs) => (
-          <div className="Recently-card col-2 mb-3 ml-3 p-2 ">
+        {songs && songs.map((songs, i) => (
+          <div key={i} className="Recently-card col-2 mb-3 ml-3 p-2 ">
             <img src={songs.album.cover_medium} className="card-img-top" />
             <div className="card-body mt-2">
               <h6 className="card-title text-white">{songs.album.title}</h6>
@@ -153,8 +153,8 @@ const Home = ({ songs, getSongs }) => {
       </div>
       <h4 className="mt-3 mb-3 ml-1 text-left">Favorite Music</h4>
       <div id="favorite" className="d-flex  fuild-bottom">
-        {songs && songs.map((songs) => (
-          <div className="Recently-card col-2 mb-3 ml-3 p-2 ">
+        {songs && songs.map((songs, i) => (
+          <div key={i} className="Recently-card col-2 mb-3 ml-3 p-2 ">
             <img src={songs.album.cover_medium} className="card-img-top" />
             <div className="card-body mt-2">
               <h6 className="card-title text-white">{songs.album.title}</h6>
