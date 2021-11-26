@@ -3,6 +3,8 @@ export const GET_ARTIST = 'GET_ARTIST'
 export const GET_ALBUMS = 'GET_ALBUMS'
 export const ADD_TO_PLAYLIST = 'ADD_TO_PLAYLIST'
 export const LIKE_SONGS = 'LIKE_SONGS'
+export const SET_SELECTED_ALBUM = 'SET_SELECTED_ALBUM'
+export const GET_TRACKLIST = 'GET_TRACKLIST'
 
 export const likedSongsAction = (songs) => ({
     type: LIKE_SONGS,
@@ -27,6 +29,27 @@ export const getSongsAction = () => {
             }
         } catch (error) {
             console.log(error)
+        }
+    }
+}
+
+
+export const getTrackList = (albumId) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`);
+
+            if(response.ok) {
+                let data = await response.json();
+                dispatch({
+                    type: GET_TRACKLIST,
+                    payload: data,
+                })
+            } else {
+                // ADD MAYBE FETCH_ERR? OR SOMETHING.
+            }
+        } catch(error) {
+            console.log(error);
         }
     }
 }
