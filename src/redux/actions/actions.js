@@ -3,6 +3,7 @@ export const GET_ARTIST = 'GET_ARTIST'
 export const GET_ALBUMS = 'GET_ALBUMS'
 export const ADD_TO_PLAYLIST = 'ADD_TO_PLAYLIST'
 export const LIKE_SONGS = 'LIKE_SONGS'
+export const UNDO = 'UNDO'
 
 export const getSongsAction = () => {
     return async (dispatch) => {
@@ -24,3 +25,12 @@ export const getSongsAction = () => {
         }
     }
 }
+
+
+export const undoAction = (dispatch)=>({
+    dispatch({
+        type: UNDO,
+        payload: songs
+    })
+    
+})

@@ -2,7 +2,7 @@ import './App.css';
 import Footer from './components/Footer';
 import MyNavBar from './components/MyNavBar';
 import { BrowserRouter as Router} from 'react-router-dom'
-
+import Undo from './components/Undo'
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <MyNavBar />
       <Footer />
       </Router>
+      <Undo />
     </div>
   );
 }
