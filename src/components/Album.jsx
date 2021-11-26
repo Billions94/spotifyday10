@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getTrackList } from "../redux/actions/actions.js";
+import {Link} from "react-router-dom";
 
 function mapStateToProps(state) {
   return {
@@ -25,7 +26,6 @@ function Album({ getTrackList, albumData, likes }) {
   let { albumId } = useParams();
   useEffect(() => {
     getTrackList(albumId);
-    
   }, []);
 
   useEffect(() => {
@@ -155,9 +155,11 @@ function Album({ getTrackList, albumData, likes }) {
                     <div className="co">
                       <a id="a1">{song.title}</a>
                       <br />
-                      <a id="a2" href="">
+                      <Link to={`/artist/${albumData.artist.id}`}>
+                      <a id="a2">
                         {song.artist.name}
                       </a>
+                      </Link>
                     </div>
                   </div>
                   <div className="d-flex album">

@@ -6,6 +6,7 @@ import Search from "./Search";
 import Library from "./Library";
 import Album from "./Album";
 import Playlist from "./Playlist";
+import Artist from "./Artist";
 
 const MyNavBar = ({ artist, setArtist}) => {
 
@@ -197,9 +198,8 @@ const MyNavBar = ({ artist, setArtist}) => {
           <Route path={"/liked"} exact component={Liked} />
           <Route path={"/search"} exact component={Search} />
           <Route path={"/library"} exact component={Library} />
-          <Route
-            path={"/album/:albumId"} exact component={Album}
-          />
+          <Route path={"/artist/:artistId"} exact component={Artist} />
+          <Route path={"/album/:albumId"} exact component={Album} />
           <Route path={"/playlist"} exact component={Playlist} />
         </div>
       </div>
