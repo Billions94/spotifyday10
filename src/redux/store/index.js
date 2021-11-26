@@ -5,10 +5,14 @@ import songsReducer from "../reducers/songs";
 import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
+import playerReducer from "../reducers/player";
+
+
 
 const mainCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const initialState = {
+
   data: {
     songs: [],
     albums: [],
@@ -32,6 +36,28 @@ const allReducers = combineReducers({
 });
 
 const persistedReducer = persistReducer(persistConfig, allReducers);
+
+    data: {
+        songs: [],
+        albums: [],
+        artist: [],
+        trackList: {},
+        isLoading: true
+    },
+    likes: {
+        liked: []
+    },
+    playerSong: {
+        player: {}
+    }
+}
+
+const allReducers = combineReducers({
+    data : songsReducer,
+    likes: likedReducer,
+    playerSong: playerReducer
+})
+
 
 const store = createStore(
   persistedReducer,

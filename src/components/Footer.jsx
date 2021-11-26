@@ -1,19 +1,26 @@
 import Form from 'react-bootstrap/Form'
+import { connect } from "react-redux"
 
-const Footer = () => {
+const mapStateToProps = state => ({
+    nowPlaying: state.playerSong.player
+})
+
+const Footer = ({ nowPlaying }) => {
   return (
     <div className="row footer">
       <nav className="col-12 navbar fixed-bottom now-playing">
         <div id="song-nav" className="col-12 col-xl-4 title-img">
-          <div className="cover-logo">
-            <img className="wizzy" src="./images/Wizkid.jpeg" alt="" />
+          {
+            nowPlaying ? 
+            <div className="cover-logo">
+            <img className="wizzy" src={nowPlaying?.album?.cover_small} alt="" />
             <div>
               <a className="Song-name" id="a1" href="">
-                Blessed (feat. Damian Marley)
+                {nowPlaying?.title}
               </a>
               <br />
               <a className="artist-name" id="a2" href="">
-                WizKid, Damian Markey
+              {nowPlaying?.artist.name}
               </a>
             </div>
             <div className="bi-bi-heart">
@@ -22,7 +29,8 @@ const Footer = () => {
             <div className="bi-bi-aspect">
               <i className="bi bi-aspect-ratio" />
             </div>
-          </div>
+          </div> : null
+          }
         </div>
         <div id="play-controls" className="col-12 col-xl-4 play-btn">
           <svg
@@ -287,4 +295,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default connect(mapStateToProps)(Footer);

@@ -7,7 +7,7 @@ import { getSongsAction } from "../redux/actions/actions";
 import SingleSong from "./SingleSong";
 
 const mapStateToProps = state => ({
-  songs: state.data.songs
+  songs: state.data.songs,
 })
 
 const mapDispatchToProps = dispatch => ({
