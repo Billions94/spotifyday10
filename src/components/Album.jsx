@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getTrackList } from "../redux/actions/actions.js";
+import { getTrackList, likedSongsAction } from "../redux/actions/actions.js";
 
 function mapStateToProps(state) {
   return {
@@ -17,22 +17,26 @@ function mapDispatchToProps(dispatch) {
     getTrackList: (albumId) => {
       dispatch(getTrackList(albumId));
     },
+    likeSong: (songs) => {
+      dispatch(likedSongsAction(songs));
+    },
+    unLikeSong: (songs) => {
+      dispatch(likedSongsAction(songs));
+    },
   };
 }
 
-
-function Album({ getTrackList, albumData, likes }) {
+function Album({ getTrackList, albumData, likeSong, likes }) {
   let { albumId } = useParams();
   useEffect(() => {
     getTrackList(albumId);
-    
   }, []);
 
   useEffect(() => {
     console.log(albumData);
   }, [albumData]);
 
- return (
+  return (
     <>
       <div
         id="songs-nav"
@@ -93,15 +97,12 @@ function Album({ getTrackList, albumData, likes }) {
             <h1 id="likedsongh1">{albumData.title}</h1>
             <a id="alexander" href>
               Album
-              <span id="alex">
-                Tracks:
-              </span>
+              <span id="alex">Tracks:</span>
             </a>
           </div>
         </div>
       </div>
       <div className="button-flw sticky-top">
-
         <button
           id="btn-b4-follow"
           type="button"
@@ -142,74 +143,84 @@ function Album({ getTrackList, albumData, likes }) {
             </div>
           </div>
 
-            {albumData.tracks &&
-              albumData.tracks.data.map((song,i) => (
-                <div key={song.id} className="row liked-hov table-body mt-3">
-                  <div className="d-flex hash">
-                    <h6 className="text-light">{i+1}</h6>
+          {albumData.tracks &&
+            albumData.tracks.data.map((song, i) => (
+              <div key={song.id} className="row liked-hov table-body mt-3">
+                <div className="d-flex hash">
+                  <h6 className="text-light">{i + 1}</h6>
+                </div>
+                <div className="d-flex cover title">
+                  <div className="cover-son">
+                    <img src={albumData.cover_small} width={45} />
                   </div>
-                  <div className="d-flex cover title">
-                    <div className="cover-son">
-                      <img src={albumData.cover_small} width={45} />
-                    </div>
-                    <div className="co">
-                      <a id="a1">{song.title}</a>
-                      <br />
-                      <a id="a2" href="">
-                        {song.artist.name}
-                      </a>
-                    </div>
-                  </div>
-                  <div className="d-flex album">
-                    <a className="text-muted album ml-3">{albumData.title}</a>
-                  </div>
-                  <div className="d-flex date-added ">
-                    <span className="text-muted ml-4">1 year ago</span>
-                  </div>
-                  <div className="d-flex customDropdownDiv">
-                    <div className="d-flex duration">
-                      <span className="text-muted ml-3">
-                        {("0" + Math.floor(song.duration / 60)).slice(-2)}:
-                        {("0" + (song.duration % 60)).slice(-2)}
-                      </span>
-                    </div>
-                    <Dropdown className="threeDots  ml-4">
-                      <Dropdown.Toggle
-                        className="customDropdown p-0"
-                        variant="success"
-                        id="dropdown-basic"
-                      >
-                        <b>...</b>
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu className="customDropdownMenu ">
-                        <Dropdown.Item
-                          className="customDropdownMenuItem"
-                          href="#/action-1"
-                        >
-                          Action
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          className="customDropdownMenuItem customBorder"
-                          href="#/action-2"
-                        >
-                          Another action
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          className="customDropdownMenuItem"
-                          href="#/action-3"
-                        >
-                          Something else
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
+                  <div className="co">
+                    <a id="a1">{song.title}</a>
+                    <br />
+                    <a id="a2" href="">
+                      {song.artist.name}
+                    </a>
                   </div>
                 </div>
-              ))}
+                <div className="d-flex album">
+                  <a className="text-muted album ml-3">{albumData.title}</a>
+                </div>
+                <div className="d-flex date-added ">
+                  <span className="text-muted ml-4">1 year ago</span>
+                </div>
+                <img
+                  className="ml-3"
+                  style={{ cursor: "pointer" }}
+                  onClick={(song) => {
+                    likeSong(song);
+                  }}
+                  src="https://img.icons8.com/ios/50/000000/like--v1.png"
+                  width="20px"
+                  height="20px"
+                />
+                <div className="d-flex customDropdownDiv">
+                  <div className="d-flex duration">
+                    <span className="text-muted ml-3">
+                      {("0" + Math.floor(song.duration / 60)).slice(-2)}:
+                      {("0" + (song.duration % 60)).slice(-2)}
+                    </span>
+                  </div>
+                  <Dropdown className="threeDots  ml-4">
+                    <Dropdown.Toggle
+                      className="customDropdown p-0"
+                      variant="success"
+                      id="dropdown-basic"
+                    >
+                      <b>...</b>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="customDropdownMenu ">
+                      <Dropdown.Item
+                        className="customDropdownMenuItem"
+                        href="#/action-1"
+                      >
+                        Action
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="customDropdownMenuItem customBorder"
+                        href="#/action-2"
+                      >
+                        Another action
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="customDropdownMenuItem"
+                        href="#/action-3"
+                      >
+                        Something else
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </>
-);
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Album);
