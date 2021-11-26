@@ -1,10 +1,11 @@
 import { withRouter } from "react-router";
 import { useState, useEffect } from "react";
 import { fetchSongs } from "../lib";
+import { Dropdown } from "react-bootstrap";
 
 const Liked = ({ location }) => {
   const [data, setData] = useState([]);
-  const url = `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`;
+  const url = `https://striveschool-api.herokuapp.com/api/deezer/search?q=wizkid`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,40 +42,23 @@ const Liked = ({ location }) => {
                 &gt;
               </button>
             </li>
-            <button
-              className="
-                    btn btn-black
-                    text-green
-                    dropdown-toggle
-                    username-home
-                    btn-border
-                    p-0
-                  "
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img
-                className="mr-3 roundpic"
-                src="./images/alex.jpeg"
-                width="25px"
-                alt
-              />
-              <span id="alexander" className="ml-3 mr-2">
-                Alexander
-              </span>
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" href="#">
-                Setting
-              </a>
-              <a className="dropdown-item" href="#">
-                Log Out
-              </a>
-            </div>
-          </ul>
+              <Dropdown className='username-home'>
+                <Dropdown.Toggle className='dropdownMenuButton' variant="success" id="dropdown-basic">
+                   <img className="mr-3 ml-0 roundpic"
+                    src="./images/alex.jpeg"
+                    width="25px" alt/>
+                  <b className='mr-3'>Alexander</b>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className='m-1 customDropdownMenu'>
+                  <Dropdown.Item  className='' href="#/action-1">Account</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Upgrade to Premium</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Private session</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+        </ul>
         </div>
         {/* NavBar Component */}
 
@@ -138,7 +122,7 @@ const Liked = ({ location }) => {
               {data.map((songs) => (
             <div key={songs.id} className="row liked-hov table-body mt-3">
                   <div className="d-flex hash">
-                    <h6 className="text-light">2</h6>
+                    <h6 className="text-light">{songs.length}</h6>
                   </div>
                   <div className="d-flex cover title">
                     <div className="cover-son">
@@ -160,10 +144,24 @@ const Liked = ({ location }) => {
                   <div className="d-flex date-added ">
                     <span className="text-muted ml-4">1 year ago</span>
                   </div>
-                  <div className="d-flex duration">
-                    <span className="text-muted ml-4">4:07</span>
-                  </div>
-                  <span className="dots">...</span>
+                  <div className="d-flex customDropdownDiv">
+                      <div className="d-flex duration">
+                            <span className="text-muted ml-3">
+                              {("0" + Math.floor(songs.duration / 60)).slice(-2)}:{("0" + songs.duration % 60).slice(-2)}
+                            </span>
+                          </div>
+                        <Dropdown className='threeDots  ml-4'>
+                          <Dropdown.Toggle className='customDropdown p-0' variant="success" id="dropdown-basic">
+                            <b>...</b>
+                          </Dropdown.Toggle>
+
+                          <Dropdown.Menu className='customDropdownMenu '>
+                            <Dropdown.Item className='customDropdownMenuItem' href="#/action-1">Action</Dropdown.Item>
+                            <Dropdown.Item className='customDropdownMenuItem customBorder' href="#/action-2">Another action</Dropdown.Item>
+                            <Dropdown.Item className='customDropdownMenuItem' href="#/action-3">Something else</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
             </div>
               ))}
                 </>

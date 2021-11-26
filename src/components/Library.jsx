@@ -1,4 +1,5 @@
 import { withRouter } from "react-router";
+import { Dropdown } from "react-bootstrap";
 
 const Library = ({ location }) => {
   return (
@@ -47,39 +48,22 @@ const Library = ({ location }) => {
                 <span className="lib-item">Albums</span>
               </button>
             </li>
-            <button
-              className="
-                    btn btn-black-library
-                    text-green
-                    dropdown-toggle
-                    username-home
-                    btn-border
-                    p-0
-                  "
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img
-                className="mr-3 roundpic"
-                src="./images/alex.jpeg"
-                width="25px"
-                alt
-              />
-              <span id="alexander" className="ml-3 mr-2">
-                Alexander
-              </span>
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" href="#">
-                Setting
-              </a>
-              <a className="dropdown-item" href="#">
-                Log Out
-              </a>
-            </div>
+            <Dropdown className='username-home'>
+                <Dropdown.Toggle className='dropdownMenuButton' variant="success" id="dropdown-basic">
+                   <img className="mr-3 ml-0 roundpic"
+                    src="./images/alex.jpeg"
+                    width="25px" alt/>
+                  <b className='mr-3'>Alexander</b>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className='m-1 customDropdownMenu'>
+                  <Dropdown.Item  className='' href="#/action-1">Account</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Upgrade to Premium</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Private session</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
           </ul>
         </div>
         {/* NavBar Component */}

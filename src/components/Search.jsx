@@ -1,6 +1,11 @@
 import { withRouter } from "react-router";
 import { useState, useEffect } from "react";
 import { fetchSongs } from "../lib";
+import { connect } from "react-redux"
+
+const mapStateToProps = state => ({
+  
+})
 
 const Search = ({ location }) => {
     const [search, setSearch] = useState('')

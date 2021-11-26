@@ -87,7 +87,7 @@ const MyNavBar = () => {
                   className="mr-3"
                   alt
                 />
-                <Link to={"liked"} id="liked-home" className="d-inline-block">
+                <Link to={"/liked"} id="liked-home" className="d-inline-block">
                   Liked Songs
                 </Link>
               </li>

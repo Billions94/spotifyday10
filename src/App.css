@@ -67,7 +67,7 @@ body {
 }
 
 .lib-item-nav {
-  cursor:  pointer !important;
+  cursor: pointer !important;
 }
 
 /* .lib-item-btn:active {
@@ -76,7 +76,7 @@ body {
 
 .lib-item {
   font-weight: 700;
-  font-size: 14px; 
+  font-size: 14px;
   line-height: 16px;
   cursor: pointer;
 }
@@ -97,12 +97,12 @@ body {
   outline: none !important;
 }
 
-#input_container {
+#input-container {
   position: relative;
-  padding: 0 0 0 20px;
-  margin: 0 20px;
-  background: #ddd;
-  direction: rtl;
+  /* padding: 0 0 0 20px; */
+  /* margin: 0 20px; */
+
+  /* direction: rtl; */
 }
 
 /* #input {
@@ -114,8 +114,8 @@ body {
 
 #input-icon {
   position: absolute;
-  bottom: 20px;
-  right: 900px;
+  bottom: 5px;
+  left: 23px;
   width: 24px;
   height: 24px;
 }
@@ -1126,6 +1126,86 @@ a #alex:hover {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+/*                        custom  dropwdown                 */
+
+.customDropdownDiv {
+  align-items: center;
+}
+
+.threeDots {
+  align-self: baseline;
+}
+
+.customDropdown::after {
+  display: none;
+}
+
+.customDropdown {
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-left: -40 px;
+}
+
+.customDropdown:hover:active:focus {
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.customDropdown:focus {
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.customDropdown:focus-visible {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.customDropdown:active {
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.customDropdown {
+  background-color: transparent;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-left: -40 px;
+}
+
+.dropdownMenuButton {
+  padding-left: 2px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  border-radius: 20px;
+  background: rgba(22, 22, 22, 0.541) !important;
+  border: none;
+  box-shadow: none !important;
+}
+
+.customDropdownMenu {
+  background-color: rgb(41, 41, 41);
+}
+
+.customDropdownMenuItem {
+  background-color: rgb(43, 42, 42) !important;
+}
+
+.customBorder {
+  border-bottom: #5c5d61 !important;
 }
 
 .App-header {

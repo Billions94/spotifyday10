@@ -1,17 +1,32 @@
 import { useState, useEffect } from "react";
 import { fetchSongs } from "../lib";
+import { connect } from "react-redux"
+import { getSongsAction } from "../redux/actions/actions";
 
-const Home = () => {
+
+
+const mapStateToProps = state => ({
+  songs: state.data.songs
+})
+
+const mapDispatchToProps = dispatch => ({
+ getSongs: () => {
+       dispatch(getSongsAction())
+ }
+})
+
+const Home = ({ songs, getSongs }) => {
+  console.log('i am the song', songs)
   const [data, setData] = useState([]);
-  const url = `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`
+  // const url = `https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`
 
   useEffect(() => {
-    const fetchData = async () => {
-      const dataEndpoint = await fetchSongs(url);
-      setData(dataEndpoint.data);
-      console.log(dataEndpoint.data);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const dataEndpoint = await fetchSongs(url);
+    //   setData(dataEndpoint.data);
+    //   console.log(dataEndpoint.data);
+    // };
+    getSongs();
   }, []);
 
   return (
@@ -71,7 +86,7 @@ const Home = () => {
 
       <h4 className="mt-3 mb-3 ml-1 text-left">Recently played</h4>
       <div id="recently" className="justify-content-between">
-        {data.map((songs) => (
+        {songs && songs.map((songs) => (
           <div className="good-morning-card ml-2 mt-4 mb-3 ">
             <div className="row no-gutters">
               <div className="col-3">
@@ -100,7 +115,7 @@ const Home = () => {
       </div>
       <h4 className="mt-3 mb-3 ml-1 text-left">Shows to try</h4>
       <div id="shows" className="d-flex justify-content-between">
-        {data.map((songs) => (
+        {songs && songs.map((songs) => (
           <div className="Recently-card col-2 mb-3 ml-3 p-2 ">
             <img src={songs.album.cover_medium} className="card-img-top" />
             <div className="card-body mt-2">
@@ -119,7 +134,7 @@ const Home = () => {
       </div>
       <h4 className="mt-3 mb-3 ml-1 text-left">Recently Downloaded</h4>
       <div id="downloaded" className="d-flex justify-content-between">
-        {data.map((songs) => (
+        {songs && songs.map((songs) => (
           <div className="Recently-card col-2 mb-3 ml-3 p-2 ">
             <img src={songs.album.cover_medium} className="card-img-top" />
             <div className="card-body mt-2">
@@ -138,7 +153,7 @@ const Home = () => {
       </div>
       <h4 className="mt-3 mb-3 ml-1 text-left">Favorite Music</h4>
       <div id="favorite" className="d-flex  fuild-bottom">
-        {data.map((songs) => (
+        {songs && songs.map((songs) => (
           <div className="Recently-card col-2 mb-3 ml-3 p-2 ">
             <img src={songs.album.cover_medium} className="card-img-top" />
             <div className="card-body mt-2">
@@ -159,4 +174,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
