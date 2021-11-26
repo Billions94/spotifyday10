@@ -19,8 +19,12 @@ export const initialState = {
     songs: [],
     albums: [],
     artist: [],
+    trackList: {},
+    isLoading: true,
   },
-  liked: [],
+  likes: {
+    liked: [],
+  },
 };
 
 const persistConfig = {
