@@ -3,6 +3,7 @@ import thunk from "redux-thunk"
 import likedReducer from "../reducers/liked";
 import songsReducer from "../reducers/songs";
 import playerReducer from "../reducers/player";
+import playListReducer from "../reducers/playlist";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -22,6 +23,9 @@ export const initialState = {
   },
   playerSong: {
       player: {}
+  },
+  playlist: {
+      lists: []
   }
 };
 
@@ -33,7 +37,8 @@ const persistConfig = {
 const allReducers = combineReducers({
   data: songsReducer,
   likes: likedReducer,
-  playerSong: playerReducer
+  playerSong: playerReducer,
+  playlist: playListReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, allReducers);

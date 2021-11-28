@@ -12,7 +12,7 @@ const likedReducer = (state = initialState.likes, action) => {
         case UNLIKED_SONGS:
             return {
                 ...state,
-                   liked: state.liked.filter((el, i) => i !== payload)
+                   liked: state.liked.filter((el) => el.id !== payload)
             }    
         default: return state
     }

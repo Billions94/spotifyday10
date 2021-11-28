@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import  Dropdown  from "react-bootstrap/Dropdown";
+import { likedSongsAction, unlikedSongsAction, displayInPlayerAction } from "../../redux/actions/actions";
 import Modal from "./Modal"
+import { connect } from "react-redux"
+import Lists from "./Lists";
 
-const Playlist = ({ location }) => {
+const mapStateToProps = state => ({
+  playlist: state.playlist.lists,
+})
+
+
+
+const Playlist = ({ location, playlist }) => {
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
   
 
   return (
     location.pathname !== "/home" && (
     <div>
       <div
-        id="songs-nav"
+        id="song-nav"
         className="pt-3 pb-3 sticky-to pl-0 pr-0 m-0 sticky-top">
         <ul className="nav m-0">
           <li className="nav-item active">
@@ -59,8 +69,8 @@ const Playlist = ({ location }) => {
         </ul>
       </div>
 
-      <div id="liked-songs" className="d-flex">
-          <div className="d-flex liked-songs-container">
+      <div id="liked-song" className="d-flex">
+          <div className="d-flex liked-song-container">
             <img src={"https://toppng.com/uploads/preview/music-note-free-png-image-outline-of-music-notes-11562913469vlfuqfrli6.png"} width="192px" alt='' />
             <div className="expert">
               <h2 id="playlisth2" className="text-light">
@@ -75,23 +85,13 @@ const Playlist = ({ location }) => {
         </div>
 
         <Modal show={show}  handleClose={handleClose}/>
-
-        <div>
-            <Dropdown className='threeDots  ml-4'>
-                <Dropdown.Toggle className='customDropdown p-0' variant="success" id="dropdown-basic">
-                  <b>...</b>
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu className='customDropdownMenu '>
-                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-1">Add to playlist</Dropdown.Item>
-                  <Dropdown.Item className='customDropdownMenuItem customBorder' href="#/action-2">Another action</Dropdown.Item>
-                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-3">Something else</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-        </div>
-    
+          <>
+            {playlist && playlist.map((song, i) => (
+                <Lists song={song} i={i}/>
+            ))}
+          </>
     </div>)
   );
 };
 
-export default withRouter(Playlist);
+export default connect(mapStateToProps)(withRouter(Playlist));

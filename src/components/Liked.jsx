@@ -60,11 +60,11 @@ const Liked = ({ location, songs, getSongs }) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className='m-1 customDropdownMenu'>
-                  <Dropdown.Item  className='' href="#/action-1">Account</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Upgrade to Premium</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Private session</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Log out</Dropdown.Item>
+                  <Dropdown.Item  className='customDropdownMenuItem text-light'>Account</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem text-light'>Profile</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem text-light'>Upgrade to Premium</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem text-light'>Private session</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem text-light'>Log out</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
         </ul>
@@ -73,14 +73,14 @@ const Liked = ({ location, songs, getSongs }) => {
 
         <div id="liked-songs" className="d-flex">
           <div className="d-flex liked-songs-container">
-            <img src={"./images/Wizkid.jpeg"} width="192px" alt />
+            <img src={"https://i.pinimg.com/originals/07/74/a4/0774a492388967e2b5b6d65b95f3fd1a.png"} width="202px" alt />
             <div className="expert">
               <h2 id="playlisth2" className="text-light">
                 PLAYLIST
               </h2>
               <h1 id="likedsongh1">Liked Songs</h1>
               <a id="alexander" href>
-                Alexander <span id="alex">.1,200 songs</span>
+                Alexander <span id="alex">•{songs.length} songs</span>
               </a>
             </div>
           </div>

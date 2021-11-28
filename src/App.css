@@ -530,7 +530,7 @@ thead {
   height: 50px;
   border-radius: 30px;
   font-weight: bold;
-  margin-left: -880px;
+  margin-left: 3px;
 }
 
 .card {
@@ -1049,7 +1049,7 @@ a #alex:hover {
 }
 
 .date-added {
-  flex-basis: 220px;
+  flex-basis: 198px;
   align-items: center;
 }
 
@@ -1123,6 +1123,7 @@ a #alex:hover {
   -webkit-appearance: none;
 }
 
+
 .App {
   /* text-align: center; */
 }
@@ -1145,7 +1146,7 @@ a #alex:hover {
 }
 
 .threeDots {
-  align-self: baseline;
+  align-self: center;
 }
 
 .customDropdown::after {
@@ -1212,6 +1213,10 @@ a #alex:hover {
 
 .customDropdownMenuItem {
   background-color: rgb(43, 42, 42) !important;
+}
+
+.customDropdownMenuItem:hover {
+  background-color: rgb(53, 53, 53) !important;
 }
 
 .customBorder {

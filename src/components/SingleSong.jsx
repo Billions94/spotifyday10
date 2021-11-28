@@ -1,7 +1,7 @@
 import Dropdown from "react-bootstrap/Dropdown"
 import { connect } from "react-redux"
 import { useState, useEffect } from "react"
-import { likedSongsAction, unlikedSongsAction, displayInPlayerAction } from "../redux/actions/actions"
+import { likedSongsAction, unlikedSongsAction, displayInPlayerAction, addToPlaylistAction } from "../redux/actions/actions"
 
 
 const mapStateToProps = (state) => ({
@@ -18,12 +18,15 @@ const mapDispatchToProps = (dispatch) => ({
     },
     unLikeSong: (songsIndex) => {
         dispatch(unlikedSongsAction(songsIndex))
+    },
+    addToPlayList: (songs) => {
+        dispatch(addToPlaylistAction(songs))
     }
 })
 
 
 
-const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong }) => {
+const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong, addToPlayList }) => {
 
     const [selected, setSelected] = useState(false)
     const [isShown, setIsShown] = useState(false)
@@ -33,9 +36,9 @@ const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong }) 
         likeSong(songs)
     }
 
-    const unLike = (songsIndex) => {
+    const unLike = (songsId) => {
         setSelected(false)
-        unLikeSong(songsIndex)
+        unLikeSong(songsId)
     }
 
     useEffect(() => {
@@ -50,8 +53,8 @@ const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong }) 
         <div onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}  key={songs.id} className="row liked-hov table-body mt-3">
         <div className="d-flex hash">
             {isShown === false ? 
-            <h6  className="text-light">{i}</h6>    
-            : <img onClick={() => displayInPlayer(songs)}  src={'./images/playbtn.png'} width='20px' height='20px'/>
+                  <h6  className="text-light">{i}</h6>    
+                : <img onClick={() => displayInPlayer(songs)}  src={'./images/playbtn.png'} width='17px' height='20px'/>
             } 
         </div>
         <div className="d-flex cover title">
@@ -73,27 +76,27 @@ const SingleSong = ({ displayInPlayer, likes, songs, i, likeSong, unLikeSong }) 
         </div>
         <div className="d-flex date-added ">
           <span className="text-muted ml-4">1 year ago</span>
-          
-          { selected === false ?
-                <img className='ml-3' onClick={() => like(songs)} src="https://img.icons8.com/ios/50/000000/like--v1.png" width='22px'/>
-               : <img className='ml-3' onClick={() => unLike(i)} src="https://img.icons8.com/fluency/50/000000/like.png" width='22px'/>
-          }
         </div>
         <div className="d-flex customDropdownDiv">
             <div className="d-flex duration">
-                  <span className="text-muted ml-3">
+            { selected === false ?
+                <img className='mr-2' onClick={() => like(songs)} src="https://img.icons8.com/ios/50/000000/like--v1.png" width='17px'/>
+               : <img className='mr-2' onClick={() => unLike(songs.id)} src="https://img.icons8.com/fluency/50/000000/like.png" width='17px'/>
+            }
+                  <span className="text-muted ml-1">
                     {("0" + Math.floor(songs.duration / 60)).slice(-2)}:{("0" + songs.duration % 60).slice(-2)}
                   </span>
                 </div>
               <Dropdown className='threeDots  ml-4'>
                 <Dropdown.Toggle className='customDropdown p-0' variant="success" id="dropdown-basic">
-                  <b>...</b>
+                    {isShown !== false ?
+                       <b >•••</b> : null
+                    }
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu className='customDropdownMenu '>
-                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-1">Add to playlist</Dropdown.Item>
-                  <Dropdown.Item className='customDropdownMenuItem customBorder' href="#/action-2">Another action</Dropdown.Item>
-                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-3">Something else</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem text-light' onClick={() => addToPlayList(songs)}>Add to playlist</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem customBorder text-light' href="#/action-2">Another action</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem text-light' href="#/action-3">Something else</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
           </div>

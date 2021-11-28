@@ -5,7 +5,7 @@ import Home from "./Home";
 import Search from "./Search";
 import Library from "./Library";
 import Album from "./Album";
-import Playlist from "./Playlist";
+import Playlist from "./playlist/Playlist";
 
 const MyNavBar = ({ artist, setArtist}) => {
 
