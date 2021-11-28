@@ -8,6 +8,7 @@ export const UNLIKED_SONGS = 'UNLIKED_SONGS'
 export const SET_SELECTED_ALBUM = 'SET_SELECTED_ALBUM'
 export const GET_TRACKLIST = 'GET_TRACKLIST'
 export const PUT_IN_PLAYER = 'PUT_IN_PLAYER'
+export const GET_ARTIST_INFO = 'GET_ARTIST_INFO'
 
 
 export const likedSongsAction = (songs) => ({
@@ -74,6 +75,33 @@ export const getTrackList = (albumId) => {
                 // ADD MAYBE FETCH_ERR? OR SOMETHING.
             }
         } catch(error) {
+            console.log(error);
+        }
+    }
+}
+
+export const getArtist = (artistId) => {
+    return async (dispatch) => {
+        try {
+            const artistResponse = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`);
+            const topTracksResponse = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=50`);
+
+            if(artistResponse.ok && topTracksResponse.ok) {
+                let artistData = await artistResponse.json();
+                let artistTopTracks = (await topTracksResponse.json()).data;
+
+                const artistInformation = {...artistData, topTracks: artistTopTracks}
+
+                console.log(artistInformation);
+
+                dispatch({
+                    type: GET_ARTIST_INFO,
+                    payload: artistInformation,
+                })
+            } else {
+                // FETCH_ERR or something.
+            }
+        } catch (error) {
             console.log(error);
         }
     }

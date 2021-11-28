@@ -1,14 +1,14 @@
 import { withRouter } from "react-router";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getTrackList, likedSongsAction } from "../redux/actions/actions.js";
+import { getTrackList, likedSongsAction, unlikedSongsAction } from "../redux/actions/actions.js";
 
 function mapStateToProps(state) {
   return {
     albumData: state.data.trackList,
-    likes: state.liked,
+    likes: state.likes.liked,
   };
 }
 
@@ -20,13 +20,13 @@ function mapDispatchToProps(dispatch) {
     likeSong: (songs) => {
       dispatch(likedSongsAction(songs));
     },
-    unLikeSong: (songs) => {
-      dispatch(likedSongsAction(songs));
+    unlikeSong: (songsId) => {
+      dispatch(unlikedSongsAction(songsId));
     },
   };
 }
 
-function Album({ getTrackList, albumData, likeSong, likes }) {
+function Album({ getTrackList, albumData, likeSong, unlikeSong, likes }) {
   let { albumId } = useParams();
   useEffect(() => {
     getTrackList(albumId);
@@ -156,9 +156,11 @@ function Album({ getTrackList, albumData, likeSong, likes }) {
                   <div className="co">
                     <a id="a1">{song.title}</a>
                     <br />
-                    <a id="a2" href="">
-                      {song.artist.name}
-                    </a>
+                    <Link to={`/artist/${song.artist.id}`}>
+                      <a id="a2" href="">
+                        {song.artist.name}
+                      </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="d-flex album">
@@ -167,18 +169,25 @@ function Album({ getTrackList, albumData, likeSong, likes }) {
                 <div className="d-flex date-added ">
                   <span className="text-muted ml-4">1 year ago</span>
                 </div>
-                <img
-                  className="ml-3"
-                  style={{ cursor: "pointer" }}
-                  onClick={(song) => {
-                    likeSong(song);
-                  }}
-                  src="https://img.icons8.com/ios/50/000000/like--v1.png"
-                  width="20px"
-                  height="20px"
-                />
                 <div className="d-flex customDropdownDiv">
                   <div className="d-flex duration">
+                    {likes.length &&
+                    likes.findIndex((likedSong) => likedSong.id === song.id) ===
+                      -1 ? (
+                      <img
+                        className="mr-2"
+                        onClick={() => likeSong(song)}
+                        src="https://img.icons8.com/ios/50/000000/like--v1.png"
+                        width="17px"
+                      />
+                    ) : (
+                      <img
+                        className="mr-2"
+                        onClick={() => unlikeSong(song.id)}
+                        src="https://img.icons8.com/fluency/50/000000/like.png"
+                        width="17px"
+                      />
+                    )}
                     <span className="text-muted ml-3">
                       {("0" + Math.floor(song.duration / 60)).slice(-2)}:
                       {("0" + (song.duration % 60)).slice(-2)}

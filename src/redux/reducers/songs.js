@@ -1,5 +1,5 @@
 import { initialState } from "../store";
-import { GET_SONGS, GET_TRACKLIST } from "../actions/actions";
+import { GET_SONGS, GET_TRACKLIST, GET_ARTIST_INFO } from "../actions/actions";
 
 
 const songsReducer = (state =  initialState.data, action) => {
@@ -14,6 +14,11 @@ const songsReducer = (state =  initialState.data, action) => {
             return {
                 ...state,
                 trackList: payload
+            }
+        case GET_ARTIST_INFO:
+            return {
+                ...state,
+                artist: payload
             }
         default: return state
     }

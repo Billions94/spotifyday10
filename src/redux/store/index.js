@@ -14,7 +14,7 @@ export const initialState = {
   data: {
     songs: [],
     albums: [],
-    artist: [],
+    artist: {},
     trackList: {},
     isLoading: true,
   },
