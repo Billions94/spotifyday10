@@ -85,6 +85,20 @@ const Playlist = ({ location, playlist }) => {
         </div>
 
         <Modal show={show}  handleClose={handleClose}/>
+
+        <div>
+            <Dropdown className='threeDots  ml-4'>
+                <Dropdown.Toggle className='customDropdown p-0' variant="success" id="dropdown-basic">
+                  <b>...</b>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className='customDropdownMenu '>
+                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-1">Remove from your library</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem customBorder' href="#/action-2">Another action</Dropdown.Item>
+                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-3">Something else</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+        </div>
           <>
             {playlist && playlist.map((song, i) => (
                 <Lists song={song} i={i}/>

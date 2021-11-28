@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => ({
     displayInPlayer: (songs) => {
         dispatch(displayInPlayerAction(songs))
     },
-    unLikeSong: (songsIndex) => {
-        dispatch(unlikedSongsAction(songsIndex))
+    unLikeSong: (songsId) => {
+        dispatch(unlikedSongsAction(songsId))
     },
     addToPlayList: (songs) => {
         dispatch(addToPlaylistAction(songs))

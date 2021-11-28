@@ -11,8 +11,8 @@ const mapDispatchToProps = (dispatch) => ({
     likeSong: (songs) => {
         dispatch(likedSongsAction(songs))
     },
-    unLikeSong: (songsIndex) => {
-        dispatch(unlikedSongsAction(songsIndex))
+    unLikeSong: (songsId) => {
+        dispatch(unlikedSongsAction(songsId))
     },
     displayInPlayer: (songs) => {
         dispatch(displayInPlayerAction(songs))
@@ -48,26 +48,13 @@ const Lists = ({ song, i, likes, likeSong, unLikeSong, displayInPlayer, removeFr
 
     return(
         <div>
-            <div>
-            <Dropdown className='threeDots  ml-4'>
-                <Dropdown.Toggle className='customDropdown p-0' variant="success" id="dropdown-basic">
-                  <b>...</b>
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu className='customDropdownMenu '>
-                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-1">Remove from your library</Dropdown.Item>
-                  <Dropdown.Item className='customDropdownMenuItem customBorder' href="#/action-2">Another action</Dropdown.Item>
-                  <Dropdown.Item className='customDropdownMenuItem' href="#/action-3">Something else</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-        </div>
-        <div onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}  key={song.id} className="row liked-hov table-body mt-3">
-        <div className="d-flex hash">
-            {isShown === false ? 
-                  <h6  className="text-light">{i}</h6>    
-                : <img onClick={() => displayInPlayer(song)}  src={'./images/playbtn.png'} width='17px' height='20px'/>
-            } 
-        </div>
+            <div onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}  key={song.id} className="row liked-hov table-body mt-3">
+            <div className="d-flex hash">
+                {isShown === false ? 
+                    <h6  className="text-light">{i}</h6>    
+                    : <img onClick={() => displayInPlayer(song)}  src={'./images/playbtn.png'} width='17px' height='20px'/>
+                } 
+            </div>
         <div className="d-flex cover title">
           <div className="cover-son">
             <img onClick={() => displayInPlayer(song)} src={song.album.cover_medium} width={45} />
@@ -92,7 +79,7 @@ const Lists = ({ song, i, likes, likeSong, unLikeSong, displayInPlayer, removeFr
             <div className="d-flex duration">
             { selected === false ?
                 <img className='mr-2' onClick={() => like(song)} src="https://img.icons8.com/ios/50/000000/like--v1.png" width='17px'/>
-               : <img className='mr-2' onClick={() => unLike(i)} src="https://img.icons8.com/fluency/50/000000/like.png" width='17px'/>
+               : <img className='mr-2' onClick={() => unLike(song.id)} src="https://img.icons8.com/fluency/50/000000/like.png" width='17px'/>
             }
                   <span className="text-muted ml-1">
                     {("0" + Math.floor(song.duration / 60)).slice(-2)}:{("0" + song.duration % 60).slice(-2)}
